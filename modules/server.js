@@ -1,10 +1,12 @@
 var http = require('http');
 var url = require('url');
 
-function iniciar(){
+function iniciar(route){
     function onRequest(request, response){
         var pathname = url.parse(request.url).pathname;
         console.log('Peticion para: ' + pathname);
+
+        route(pathname);
 
         response.writeHead(200, {'Content-Type': 'text/xml'});
         response.write('<Header><p1>Parrafo 1</p1><p2>Parrafo 2</p2></Header>');
